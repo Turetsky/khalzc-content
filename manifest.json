@@ -1,5 +1,11 @@
 {
-  "bulletin": {},
-  "calendar": {},
-  "updated": null
+  "bulletin": {
+    "file": "bulletins/bulletin-2026-06-13.pdf",
+    "date": "2026-06-13"
+  },
+  "calendar": {
+    "file": "calendars/calendar-2026-06.pdf",
+    "month": "2026-06"
+  },
+  "updated": "2026-06-11T18:45:00.000Z"
 }
