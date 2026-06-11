@@ -2,23 +2,18 @@
   "bulletin": {
     "file": "bulletins/bulletin-2026-06-13.pdf",
     "date": "2026-06-13",
-    "title": "Parshas Shelach"
+    "title": "Weekly Announcements"
   },
   "bulletins": [
     {
       "file": "bulletins/bulletin-2026-06-13.pdf",
       "date": "2026-06-13",
-      "title": "Parshas Shelach"
-    },
-    {
-      "file": "bulletins/bulletin-2026-06-06.pdf",
-      "date": "2026-06-06",
-      "title": "Parshas Beha'aloscha"
+      "title": "Weekly Announcements"
     }
   ],
   "calendar": {
     "file": "calendars/june-calendar-2026.png",
     "month": "2026-06"
   },
-  "updated": "2026-06-11T20:10:00.000Z"
+  "updated": "2026-06-11T21:30:00.000Z"
 }
