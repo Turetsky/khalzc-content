@@ -34,33 +34,39 @@ Old files may stay in the folders for history; the app only reads whatever
 
 ## manifest.json — the contract
 
-The app fetches **only this file** first, then downloads the two files it names.
+The app fetches **only this file** first, then downloads the files it names. It's
+**dual-key**: a `bulletins[]` feed (newest first) **and** a legacy single `bulletin`
+(= the latest), so both new feed readers and old single-bulletin readers work.
 
 ```json
 {
-  "bulletin": { "file": "bulletins/bulletin-2026-06-13.pdf",  "date":  "2026-06-13" },
-  "calendar": { "file": "calendars/june-calendar-2026.png",   "month": "2026-06" },
+  "bulletins": [
+    { "file": "bulletins/bulletin-2026-06-13.pdf", "date": "2026-06-13", "title": "Parshas Shelach" },
+    { "file": "bulletins/bulletin-2026-06-06.pdf", "date": "2026-06-06", "title": "Parshas Beha'aloscha" }
+  ],
+  "bulletin": { "file": "bulletins/bulletin-2026-06-13.pdf", "date": "2026-06-13", "title": "Parshas Shelach" },
+  "calendar": { "file": "calendars/june-calendar-2026.png",  "month": "2026-06" },
   "updated":  "2026-06-13T15:04:00.000Z"
 }
 ```
 
-| Field            | Meaning                                                   |
-|------------------|-----------------------------------------------------------|
-| `bulletin.file`  | repo-relative path to the current bulletin (PDF or image) |
-| `bulletin.date`  | issue date, `YYYY-MM-DD`                                  |
-| `calendar.file`  | repo-relative path to the current calendar (PDF or image) |
-| `calendar.month` | calendar month, `YYYY-MM`                                |
-| `updated`        | ISO 8601 timestamp of the last publish                    |
+| Field            | Meaning                                                          |
+|------------------|------------------------------------------------------------------|
+| `bulletins[]`    | full bulletin feed, **newest first**; each `{file, date, title?}` |
+| `bulletin`       | legacy single = `bulletins[0]` (the latest), same shape          |
+| `*.file`         | repo-relative path to the file (PDF *or* image)                  |
+| `*.date`         | bulletin issue date, `YYYY-MM-DD`                               |
+| `*.title`        | optional bulletin parsha/name                                    |
+| `calendar.file`  | repo-relative path to the current calendar (PDF or image)        |
+| `calendar.month` | calendar month, `YYYY-MM`                                       |
+| `updated`        | ISO 8601 timestamp of the last publish                           |
 
 > The **file extension on `file`** tells the app whether to render it as a PDF or
-> an image — keep it accurate.
+> an image — keep it accurate. The publish tool maintains `bulletins[]` + `bulletin`
+> together (append, re-sort newest-first, update the legacy key) — never hand-edit.
 
-An empty object (`{}`) for `bulletin` or `calendar` means "none published yet" —
-the app shows its last cached copy, or an empty state.
-
-> **Coming soon:** the `bulletin` entry may grow from a single object into a **list**
-> (array of recent bulletins) for a multi-announcement feed. Not live yet — noted so
-> downstream code isn't surprised.
+An empty/absent feed means "none published yet" — the app shows its last cached copy,
+or an empty state.
 
 ## events.json — OPTIONAL one-off events
 
