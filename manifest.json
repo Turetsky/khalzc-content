@@ -1,20 +1,10 @@
 {
   "bulletin": {
-    "file": "bulletins/bulletin-2099-12-31.png",
-    "date": "2099-12-31",
-    "title": "RT New"
+    "file": "bulletins/bulletin-2026-06-13.pdf",
+    "date": "2026-06-13",
+    "title": "Parshas Shelach"
   },
   "bulletins": [
-    {
-      "file": "bulletins/bulletin-2099-12-31.png",
-      "date": "2099-12-31",
-      "title": "RT New"
-    },
-    {
-      "file": "bulletins/bulletin-2099-01-01.png",
-      "date": "2099-01-01",
-      "title": "RT Old"
-    },
     {
       "file": "bulletins/bulletin-2026-06-13.pdf",
       "date": "2026-06-13",
@@ -30,5 +20,5 @@
     "file": "calendars/june-calendar-2026.png",
     "month": "2026-06"
   },
-  "updated": "2026-06-11T20:20:17.176Z"
+  "updated": "2026-06-11T20:10:00.000Z"
 }
