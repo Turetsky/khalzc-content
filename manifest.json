@@ -1,19 +1,19 @@
 {
   "bulletin": {
-    "file": "bulletins/bulletin-2026-06-13.pdf",
-    "date": "2026-06-13",
-    "title": "Weekly Announcements"
+    "file": "bulletins/weekly-2026-05-30.png",
+    "date": "2026-05-30",
+    "title": "Weekly Announcements · Parshas Naso"
   },
   "bulletins": [
     {
-      "file": "bulletins/bulletin-2026-06-13.pdf",
-      "date": "2026-06-13",
-      "title": "Weekly Announcements"
+      "file": "bulletins/weekly-2026-05-30.png",
+      "date": "2026-05-30",
+      "title": "Weekly Announcements · Parshas Naso"
     }
   ],
   "calendar": {
     "file": "calendars/june-calendar-2026.png",
     "month": "2026-06"
   },
-  "updated": "2026-06-11T21:30:00.000Z"
+  "updated": "2026-06-11T22:05:00.000Z"
 }
