@@ -18,33 +18,41 @@ Netlify production deploys cost credits. (Architecture approved Jun 2026.)
 ## Layout
 
 ```
-/bulletins/<file>.pdf     weekly/periodic bulletin PDFs
-/calendars/<file>.pdf     monthly calendar PDFs
-/manifest.json            pointer to the CURRENT bulletin + calendar
+/bulletins/<file>.(pdf|png|jpg)   weekly/periodic bulletins  — PDF *or* image
+/calendars/<file>.(pdf|png|jpg)   monthly calendars          — PDF *or* image
+/manifest.json                    pointer to the CURRENT bulletin + calendar
 ```
 
-Old PDFs may stay in the folders for history; the app only reads whatever
+Both PDFs **and** images (PNG/JPG) are supported — the office often produces a
+calendar as a single image. **The renderer decides how to display by the file
+extension in `manifest.json`** (`.pdf` → PDF viewer; `.png`/`.jpg` → image view),
+so always keep the extension on `file`.
+
+Old files may stay in the folders for history; the app only reads whatever
 `manifest.json` points at.
 
 ## manifest.json — the contract
 
-The app fetches **only this file** first, then downloads the two PDFs it names.
+The app fetches **only this file** first, then downloads the two files it names.
 
 ```json
 {
-  "bulletin": { "file": "bulletins/bulletin-2026-06-13.pdf", "date":  "2026-06-13" },
-  "calendar": { "file": "calendars/calendar-2026-06.pdf",     "month": "2026-06" },
+  "bulletin": { "file": "bulletins/bulletin-2026-06-13.pdf",  "date":  "2026-06-13" },
+  "calendar": { "file": "calendars/june-calendar-2026.png",   "month": "2026-06" },
   "updated":  "2026-06-13T15:04:00.000Z"
 }
 ```
 
-| Field            | Meaning                                              |
-|------------------|------------------------------------------------------|
-| `bulletin.file`  | repo-relative path to the current bulletin PDF       |
-| `bulletin.date`  | issue date, `YYYY-MM-DD`                             |
-| `calendar.file`  | repo-relative path to the current calendar PDF       |
-| `calendar.month` | calendar month, `YYYY-MM`                           |
-| `updated`        | ISO 8601 timestamp of the last publish               |
+| Field            | Meaning                                                   |
+|------------------|-----------------------------------------------------------|
+| `bulletin.file`  | repo-relative path to the current bulletin (PDF or image) |
+| `bulletin.date`  | issue date, `YYYY-MM-DD`                                  |
+| `calendar.file`  | repo-relative path to the current calendar (PDF or image) |
+| `calendar.month` | calendar month, `YYYY-MM`                                |
+| `updated`        | ISO 8601 timestamp of the last publish                    |
+
+> The **file extension on `file`** tells the app whether to render it as a PDF or
+> an image — keep it accurate.
 
 An empty object (`{}`) for `bulletin` or `calendar` means "none published yet" —
 the app shows its last cached copy, or an empty state.
